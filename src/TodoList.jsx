@@ -1,33 +1,40 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default function TodoList(){
 
-    let [todos,setTodos]= useState(["simple tasks"]);
+    let [todos,setTodos]= useState([{task:"simple Tasks",id:uuidv4()}]);
     let [newTodo,setNewTodo]= useState("");
-    
 
-    let updateTodoValue = (event)=>{
-        console.log(event.target.value);
+    let addNewTask= () =>{
+        console.log("button was click");
+        setTodos( [...todos,{task:newTodo,id:uuidv4()
+
+        }]);
+        setNewTodo("");
+    }
+
+    let updateTodoValue = (event)=> {
+        setNewTodo(event.target.value);
     }
     
 
 
     return (
         <div>
-            <input type="text" name="" id="" placeholder="add a task" onChange={updateTodoValue} />
-            <button>add task</button>
+            <input  name="" id="" value={newTodo} placeholder="add a task" onChange={updateTodoValue} />
+            <button onClick={addNewTask}>add task</button>
             <br></br>,<br></br>
             <hr></hr>
             <h4>Tasks Todo</h4>
             <ul>
                 {
                     todos.map( (todo)=>(
-                        <li>{todo}</li>
+                        <li key={todo.id}>{todo.task}</li>
+                    
 
-                    ))
-                }
-
+                    ))}
             </ul>
         </div>
     )
