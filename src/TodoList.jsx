@@ -9,14 +9,20 @@ export default function TodoList(){
 
     let addNewTask= () =>{
         console.log("button was click");
-        setTodos( [...todos,{task:newTodo,id:uuidv4()
-
-        }]);
+        setTodos( (prevTodo)=>{
+            return [...prevTodo, {task:newTodo,id:uuidv4()}]
+        })
         setNewTodo("");
     }
 
     let updateTodoValue = (event)=> {
         setNewTodo(event.target.value);
+    }
+
+    let deleteTodo = (id)=>{
+        console.log(id);
+       setTodos(todos.filter((todo)=> todo.id !=id));
+        
     }
     
 
@@ -31,7 +37,11 @@ export default function TodoList(){
             <ul>
                 {
                     todos.map( (todo)=>(
-                        <li key={todo.id}>{todo.task}</li>
+                        <li key={todo.id}>
+                            <span>{todo.task}</span>
+                            &nbsp;&nbsp;&nbsp;
+                            <button onClick={()=>deleteTodo(todo.id)}>delete</button>
+                        </li>
                     
 
                     ))}
