@@ -25,7 +25,7 @@ export default function TodoList(){
         
     }
 
-    let upperCaseAll= () =>{
+    let markAsDoneAll= () =>{
         setTodos( (prevTodo)=>
             prevTodo.map( (todo)=>{
                 return{
@@ -75,7 +75,7 @@ export default function TodoList(){
 
                     ))} 
              </ul>
-             <button onClick={upperCaseAll}>upperCaseAll</button>
+             <button onClick={markAsDoneAll}>markAsDoneAll</button>
         </div>
     )
 }
